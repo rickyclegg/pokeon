@@ -11,7 +11,8 @@
     "lint:fix": "eslint '**/*.ts?(x)' --fix --color --ignore-path .gitignore --cache",
     "test": "concurrently -s --kill-others-on-fail npm:lint:fix npm:test:unit npm:test:acceptance",
     "test:unit": "jest",
-    "test:acceptance": "ts-node ./black-box-tests/acceptance.ts",
+    "test:acceptance": "ts-node black-box-tests/acceptance.spec.ts",
+    "test:acceptance2": "jest --config=jest.acceptance.config.js",
     "ncdc:serve": "ncdc serve ./black-box-tests/cdc-config.yml --watch 4000",
     "ncdc:test": "ncdc test ./black-box-tests/cdc-config.yml https://pokeapi.co/api/v2"
   },
