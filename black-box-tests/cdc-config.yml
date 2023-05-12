@@ -3,7 +3,7 @@
     method: GET
     endpoints:
       - /pokemon
-    serveEndpoint: /api/v2/pokemon
+    serveEndpoint: /pokemon
   response:
     code: 200
     headers:
@@ -22,7 +22,7 @@
     method: GET
     endpoints:
       - /pokemon/bulbasaur
-    serveEndpoint: /api/v2/pokemon/bulbasaur
+    serveEndpoint: /pokemon/bulbasaur
   response:
     code: 200
     headers:
