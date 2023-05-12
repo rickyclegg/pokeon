@@ -2,3 +2,5 @@
 .idea
 /dist/
 build.log
+pokemon.yml
+.eslintcache
