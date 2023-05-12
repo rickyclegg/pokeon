@@ -1,18 +1,12 @@
 import express, { Express, Request, Response } from 'express'
-import { writeFileSync } from 'fs'
-import YAML from 'yaml'
-import fetch from 'node-fetch'
-import config from './config'
+import Pokeon from './pokeon'
 
 const app: Express = express()
 
 app.get('/api/webhook', async (req: Request, res: Response) => {
-  const { POKEMON_API } = config()
-  const data = await fetch(POKEMON_API)
+  const main = new Pokeon()
 
-  const pokemonJson = await data.json()
-
-  writeFileSync('pokemon.yml', YAML.stringify(pokemonJson))
+  await main.execute()
 
   res.sendStatus(200)
 })
