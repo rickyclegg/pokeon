@@ -1,8 +1,7 @@
-// import request from 'supertest'
-// import app from './server'
+import request from 'supertest'
+import app from './server'
 describe('Test example', () => {
-  it('It should return OK from root', async () => {
-    // await request(app).get('/').expect(200)
-    expect(true).toBeTruthy()
+  xit('', async () => {
+    await request(app).get('/api/webhook').expect(200)
   })
 })
