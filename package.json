@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/src/index.js",
+    "start": "POKEMON_API=https://pokeapi.co/api/v2/pokemon node dist/src/index.js",
     "dev": "concurrently --kill-others-on-fail --kill-others \"npx tsc --watch\" \"nodemon -q dist/src/index.js\"",
     "lint": "eslint '**/*.ts?(x)' --color --ignore-path .gitignore --cache",
     "lint:fix": "eslint '**/*.ts?(x)' --fix --color --ignore-path .gitignore --cache",
