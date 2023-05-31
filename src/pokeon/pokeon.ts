@@ -1,4 +1,4 @@
-import config from './config'
+import config from '../config'
 import fetch from 'node-fetch'
 import { writeFileSync } from 'fs'
 import YAML from 'yaml'

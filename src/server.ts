@@ -1,14 +1,12 @@
 import express, { Express, Request, Response } from 'express'
-import Pokeon from './pokeon'
+import { Executable } from './types'
 
 class Server {
   public app: Express
-  constructor() {
+  constructor(main: Executable) {
     this.app = express()
 
     this.app.get('/api/webhook', async (req: Request, res: Response) => {
-      const main = new Pokeon()
-
       await main.execute()
 
       res.sendStatus(200)
