@@ -17,9 +17,7 @@ describe('File Writer', () => {
   const createTestDeps = () => {
     return {
       fileClient: jest.fn(),
-      data: {
-        names: ['dummyName'],
-      },
+      data: 'dummyData',
     }
   }
 })
