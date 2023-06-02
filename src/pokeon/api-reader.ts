@@ -1,13 +1,10 @@
-import { Reader, HttpClient } from '../types'
+import { HttpClient, PokemonApiRes, Reader } from '../types'
 
 export type PokemonReaderOptions = {
   api: string
   httpClient: HttpClient
 }
 
-export type PokemonApiRes = {
-  results: Array<{ name: string }>
-}
 class ApiReader implements Reader {
   private options: PokemonReaderOptions
   constructor(options: PokemonReaderOptions) {

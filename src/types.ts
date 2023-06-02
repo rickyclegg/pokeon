@@ -21,3 +21,11 @@ export interface Reader {
 export interface Writer<D> {
   set(data: D): Promise<void>
 }
+
+export type Pokemon = {
+  name: string
+}
+
+export type PokemonApiRes = {
+  results: Array<Pokemon>
+}
