@@ -5,7 +5,7 @@ import Pokeon from './pokeon/pokeon'
 import config from './config'
 import { promises as fs } from 'fs'
 import YamlTransformer from './pokeon/yaml-transformer'
-import PokemonReader from './pokeon/pokemon-reader'
+import ApiReader from './pokeon/api-reader'
 import { HttpClient } from './types'
 import FileWriter from './pokeon/file-writer'
 
@@ -17,7 +17,7 @@ const port = process.env.PORT
 
 const { app } = new Server(
   new Pokeon({
-    reader: new PokemonReader({
+    reader: new ApiReader({
       api: appConfig.POKEMON_API,
       httpClient: fetch as unknown as HttpClient,
     }),

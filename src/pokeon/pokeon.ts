@@ -1,8 +1,8 @@
-import { ApiReader, Transformer, Writer } from '../types'
+import { Reader, Transformer, Writer } from '../types'
 
 export type PokeonOptions = {
   transformer: Transformer<object, string>
-  reader: ApiReader
+  reader: Reader
   writer: Writer<string>
 }
 

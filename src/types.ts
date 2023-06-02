@@ -12,7 +12,7 @@ export type HttpClient = (
 ) => {
   json: () => Promise<unknown>
 }
-export interface ApiReader {
+export interface Reader {
   get(): Promise<Array<{ name: string }>>
 }
 export interface Writer<D> {

@@ -1,14 +1,14 @@
-import PokemonReader from './pokemon-reader'
+import ApiReader from './api-reader'
 
-describe('Pokemon Reader', () => {
-  it('should return me some pokemon', async () => {
+describe('Api Reader', () => {
+  it('should return me some data', async () => {
     const { httpClient: stubHttpClient, httpClientRes } = createTestDeps()
     const expectedJson = { results: [{ name: 'Bulbasaur' }] }
 
     httpClientRes.json.mockResolvedValue(expectedJson)
     stubHttpClient.mockResolvedValue(httpClientRes)
 
-    const reader = new PokemonReader({ api: 'dummyUrl', httpClient: stubHttpClient })
+    const reader = new ApiReader({ api: 'dummyUrl', httpClient: stubHttpClient })
 
     const res = await reader.get()
 
