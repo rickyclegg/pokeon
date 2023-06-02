@@ -13,11 +13,13 @@ class Pokeon {
     this.options = options
   }
   public async execute() {
-    const data = await fetch(this.options.api)
+    const { api, transformer } = this.options
+
+    const data = await fetch(api)
 
     const pokemonJson = await data.json()
 
-    writeFileSync('pokemon.yml', await this.options.transformer.transform(pokemonJson))
+    writeFileSync('pokemon.yml', await transformer.transform(pokemonJson))
   }
 }
 
