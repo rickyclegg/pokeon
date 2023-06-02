@@ -10,7 +10,7 @@ describe('Acceptance tests', () => {
 
     removeFile()
 
-    expect(data.results[0].name).toEqual('bulbasaur')
+    expect(data.names[0]).toEqual('bulbasaur')
   })
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
