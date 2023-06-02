@@ -12,3 +12,6 @@ export type HttpClient = (
 ) => {
   json: () => Promise<unknown>
 }
+export interface ApiReader {
+  get(): Promise<Array<{ name: string }>>
+}

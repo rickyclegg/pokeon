@@ -1,10 +1,9 @@
-import fetch from 'node-fetch'
 import { writeFileSync } from 'fs'
-import { Transformer } from '../types'
+import { ApiReader, Transformer } from '../types'
 
 export type PokeonOptions = {
-  api: string
   transformer: Transformer<object, string>
+  reader: ApiReader
 }
 
 class Pokeon {
@@ -13,13 +12,11 @@ class Pokeon {
     this.options = options
   }
   public async execute() {
-    const { api, transformer } = this.options
+    const { transformer, reader } = this.options
 
-    const data = await fetch(api)
+    const data = await reader.get()
 
-    const pokemonJson = await data.json()
-
-    writeFileSync('pokemon.yml', await transformer.transform(pokemonJson))
+    writeFileSync('pokemon.yml', await transformer.transform(data))
   }
 }
 
