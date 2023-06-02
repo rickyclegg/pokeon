@@ -15,3 +15,6 @@ export type HttpClient = (
 export interface ApiReader {
   get(): Promise<Array<{ name: string }>>
 }
+export interface Writer<D> {
+  set(filePath: string, data: D): Promise<void>
+}

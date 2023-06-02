@@ -1,9 +1,9 @@
-import { writeFileSync } from 'fs'
-import { ApiReader, Transformer } from '../types'
+import { ApiReader, Transformer, Writer } from '../types'
 
 export type PokeonOptions = {
   transformer: Transformer<object, string>
   reader: ApiReader
+  writer: Writer<string>
 }
 
 class Pokeon {
@@ -12,11 +12,11 @@ class Pokeon {
     this.options = options
   }
   public async execute() {
-    const { transformer, reader } = this.options
+    const { transformer, reader, writer } = this.options
 
     const data = await reader.get()
 
-    writeFileSync('pokemon.yml', await transformer.transform(data))
+    await writer.set('pokemon.yml', await transformer.transform(data))
   }
 }
 
