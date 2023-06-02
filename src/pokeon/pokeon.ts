@@ -16,7 +16,7 @@ class Pokeon {
 
     const data = await reader.get()
 
-    await writer.set('pokemon.yml', await transformer.transform(data))
+    await writer.set(await transformer.transform(data))
   }
 }
 

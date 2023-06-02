@@ -16,5 +16,5 @@ export interface Reader {
   get(): Promise<Array<{ name: string }>>
 }
 export interface Writer<D> {
-  set(filePath: string, data: D): Promise<void>
+  set(data: D): Promise<void>
 }

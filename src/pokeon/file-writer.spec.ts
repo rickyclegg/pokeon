@@ -7,9 +7,9 @@ describe('File Writer', () => {
 
     stubFileClient.mockResolvedValue(null)
 
-    const writer = new FileWriter({ fileClient: stubFileClient })
+    const writer = new FileWriter({ fileClient: stubFileClient, filePath: dummyFilePath })
 
-    await writer.set(dummyFilePath, dummyData)
+    await writer.set(dummyData)
 
     expect(stubFileClient).toHaveBeenCalledWith(dummyFilePath, dummyData)
   })
