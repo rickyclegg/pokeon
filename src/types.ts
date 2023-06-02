@@ -12,6 +12,9 @@ export type HttpClient = (
 ) => {
   json: () => Promise<unknown>
 }
+
+export type FileClient = (filePath: string, data: string) => Promise<void>
+
 export interface Reader {
   get(): Promise<Array<{ name: string }>>
 }

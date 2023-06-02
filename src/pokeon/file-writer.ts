@@ -1,7 +1,7 @@
-import { Writer } from '../types'
+import { FileClient, Writer } from '../types'
 
 export type FileWriterOptions = {
-  fileClient(filePath: string, data: string): Promise<void>
+  fileClient: FileClient
   filePath: string
 }
 class FileWriter implements Writer<string> {
