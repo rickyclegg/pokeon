@@ -1,4 +1,4 @@
-import PokemonReader from './pokemon.reader'
+import PokemonReader from './pokemon-reader'
 
 describe('Pokemon Reader', () => {
   it('should return me some pokemon', async () => {

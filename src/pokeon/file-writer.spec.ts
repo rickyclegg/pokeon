@@ -1,4 +1,4 @@
-import FileWriter from './file.writer'
+import FileWriter from './file-writer'
 
 describe('File Writer', () => {
   it('should write a file to disk', async () => {

@@ -5,9 +5,9 @@ import Pokeon from './pokeon/pokeon'
 import config from './config'
 import { promises as fs } from 'fs'
 import YamlTransformer from './pokeon/yaml-transformer'
-import PokemonReader from './pokeon/pokemon.reader'
+import PokemonReader from './pokeon/pokemon-reader'
 import { HttpClient } from './types'
-import FileWriter from './pokeon/file.writer'
+import FileWriter from './pokeon/file-writer'
 
 dotenv.config()
 
