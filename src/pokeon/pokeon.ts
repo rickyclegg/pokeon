@@ -1,12 +1,18 @@
-import config from '../config'
 import fetch from 'node-fetch'
 import { writeFileSync } from 'fs'
 import YAML from 'yaml'
 
+export type PokeonOptions = {
+  api: string
+}
+
 class Pokeon {
+  private options: PokeonOptions
+  constructor(options: PokeonOptions) {
+    this.options = options
+  }
   public async execute() {
-    const { POKEMON_API } = config()
-    const data = await fetch(POKEMON_API)
+    const data = await fetch(this.options.api)
 
     const pokemonJson = await data.json()
 
