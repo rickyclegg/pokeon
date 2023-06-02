@@ -1,6 +1,7 @@
 import YAML from 'yaml'
+import { Transformer } from '../types'
 
-class YamlTransformer {
+class YamlTransformer implements Transformer<string> {
   private data: JSON
   constructor(data: any) {
     this.data = data
