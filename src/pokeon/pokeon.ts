@@ -1,9 +1,10 @@
 import fetch from 'node-fetch'
 import { writeFileSync } from 'fs'
-import YAML from 'yaml'
+import { Transformer } from '../types'
 
 export type PokeonOptions = {
   api: string
+  transformer: Transformer<object, string>
 }
 
 class Pokeon {
@@ -16,7 +17,7 @@ class Pokeon {
 
     const pokemonJson = await data.json()
 
-    writeFileSync('pokemon.yml', YAML.stringify(pokemonJson))
+    writeFileSync('pokemon.yml', await this.options.transformer.transform(pokemonJson))
   }
 }
 
