@@ -3,5 +3,5 @@ export interface Executable {
 }
 
 export interface Transformer<T> {
-  toOutput(): Promise<T>
+  transform(data: any): Promise<T>
 }

@@ -6,8 +6,8 @@ describe('Yaml Transformer', () => {
       names: ['Ricky', 'Veronika'],
     }
 
-    const transformer = new YamlTransformer(expectedResult)
-    const result = await transformer.toOutput()
+    const transformer = new YamlTransformer()
+    const result = await transformer.transform(expectedResult)
 
     expectedResult.names.forEach((name) => {
       expect(result).toContain(`- ${name}`)
