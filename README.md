@@ -10,18 +10,18 @@ When triggered via an HTTP endpoint Pokeon reads from a third party source of da
 
 ### Local
 
-`npm run ncdc:serve` this will boot the mock version of the Pokémon API.
-`npm run dev` this will run a local dev version of the site against the mock.
+`npm run ncdc:serve` this will boot the mock version of the Pokémon API.  
+`npm run dev` this will run a local dev version of the site against the mock.  
 
 Open `http://localhost:3000/api/webhook` to see it run.
 
-With the local version runing you can run `npm test` to run all tests.
+With the local version runing you can run `npm test` to run all tests.  
 Or `npm run test:unit` to run just unit tests.  
-We have 3 different tests Acceptance Tests against a mock, unit tests and CDC's.
+We have 3 different tests Acceptance Tests against a mock, unit tests and CDC's.  
 
 ### Production
-`npm run build`
-`npm run start`
+`npm run build`  
+`npm run start`  
 
 This will run production mode against the Pokémon API.
 
