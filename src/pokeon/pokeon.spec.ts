@@ -25,21 +25,17 @@ describe('Pokeon', () => {
     expect(stubWriter.set).toHaveBeenCalledWith(expectedOutput)
   })
 
-  it('should output a pokemon file', async () => {
-    const expectedPokemonId = 1
-    const expectedPokemonName = 'pokeyface'
-    const expectedPokemonPath = `/${expectedPokemonName}.yml`
-    const stubReader = new FakeReader(expectedPokemonId)
+  it('should output a pokemon files', async () => {
+    const expectedNames = [{ name: 'myFirstPokemon' }, { name: 'mySecondPokemon' }]
+
+    const stubReader = new FakeReader()
     const dummyTransformer = new FakeTransformer()
     const stubWriter = new FakeWriter()
 
     jest.spyOn(stubReader, 'get')
     jest.spyOn(stubWriter, 'set')
 
-    when(stubReader.get).mockResolvedValue({ results: [{ name: expectedPokemonName }] })
-    when(stubReader.get)
-      .calledWith(`/${expectedPokemonName}` as unknown as any)
-      .mockResolvedValue({ id: expectedPokemonId })
+    when(stubReader.get).mockResolvedValue({ results: expectedNames })
 
     const pokeon = new Pokeon({
       reader: stubReader,
@@ -50,14 +46,21 @@ describe('Pokeon', () => {
 
     await pokeon.execute()
 
-    expect(stubWriter.set).toHaveBeenCalledWith({ id: expectedPokemonId }, expectedPokemonPath)
+    expect(stubWriter.set).toHaveBeenCalledTimes(expectedNames.length + 1)
+
+    expectedNames.forEach(({ name }, index) => {
+      // @ts-ignore
+      const pokemonCall = stubWriter.set.mock.calls[index + 1]
+
+      expect(pokemonCall[1]).toBe(`/${name}.yml`)
+    })
   })
 })
 
 class FakeReader implements Reader {
   private data: any
   //@ts-ignore
-  constructor(data) {
+  constructor(data?) {
     this.data = data
   }
   async get() {
