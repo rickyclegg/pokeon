@@ -18,7 +18,7 @@ const port = process.env.PORT
 const { app } = new Server(
   new Pokeon({
     reader: new ApiReader({
-      api: appConfig.POKEMON_API,
+      baseUrl: appConfig.POKEMON_API,
       httpClient: fetch as unknown as HttpClient,
     }),
     transformer: new NamesYamlTransformer(),

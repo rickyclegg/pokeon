@@ -16,7 +16,7 @@ export type HttpClient = (
 export type FileClient = (filePath: string, data: string) => Promise<void>
 
 export interface Reader {
-  get(): Promise<Array<{ name: string }>>
+  get(path?: string): Promise<Array<{ name: string }>>
 }
 export interface Writer<D> {
   set(data: D): Promise<void>

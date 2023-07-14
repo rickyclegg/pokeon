@@ -1,7 +1,7 @@
 import { HttpClient, PokemonApiRes, Reader } from '../types'
 
 export type PokemonReaderOptions = {
-  api: string
+  baseUrl: string
   httpClient: HttpClient
 }
 
@@ -11,10 +11,10 @@ class ApiReader implements Reader {
     this.options = options
   }
 
-  public async get(): Promise<Array<{ name: string }>> {
-    const { httpClient, api } = this.options
+  public async get(path?: string): Promise<Array<{ name: string }>> {
+    const { httpClient, baseUrl } = this.options
 
-    const res = await httpClient(api)
+    const res = await httpClient(`${baseUrl}${path ? path : ''}`)
     const pokeJson = (await res.json()) as PokemonApiRes
 
     return pokeJson.results

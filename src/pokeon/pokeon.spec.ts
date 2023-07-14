@@ -20,6 +20,25 @@ describe('Pokeon', () => {
 
     expect(stubWriter.set).toHaveBeenCalledWith(expectedOutput)
   })
+
+  xit('should output a pokemon file', async () => {
+    const expectedPokemonOutput = 1
+    const dummyReader = new FakeReader(expectedPokemonOutput)
+    const dummyTransformer = new FakeTransformer()
+    const stubWriter = new FakeWriter()
+
+    jest.spyOn(stubWriter, 'set')
+
+    const pokeon = new Pokeon({
+      reader: dummyReader,
+      transformer: dummyTransformer,
+      writer: stubWriter,
+    })
+
+    await pokeon.execute()
+
+    expect(stubWriter.set).toHaveBeenCalledWith(expectedPokemonOutput)
+  })
 })
 
 class FakeReader implements Reader {
