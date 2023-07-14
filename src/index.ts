@@ -24,7 +24,7 @@ const { app } = new Server(
     transformer: new NamesYamlTransformer(),
     writer: new FileWriter({
       fileClient: fs.writeFile,
-      filePath: appConfig.NAMES_OUTPUT_FILE_PATH,
+      basePath: appConfig.NAMES_OUTPUT_FILE_PATH,
     }),
   }),
 )

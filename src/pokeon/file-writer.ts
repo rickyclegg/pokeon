@@ -2,7 +2,7 @@ import { FileClient, Writer } from '../types'
 
 export type FileWriterOptions = {
   fileClient: FileClient
-  filePath: string
+  basePath: string
 }
 class FileWriter implements Writer<string> {
   private options: FileWriterOptions
@@ -10,10 +10,10 @@ class FileWriter implements Writer<string> {
     this.options = options
   }
 
-  public async set(data: string): Promise<void> {
-    const { fileClient, filePath } = this.options
+  public async set(data: string, path?: string): Promise<void> {
+    const { fileClient, basePath } = this.options
 
-    return await fileClient(filePath, data)
+    return await fileClient(`${basePath}${path ? path : ''}`, data)
   }
 }
 

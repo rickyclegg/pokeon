@@ -21,7 +21,7 @@ describe('Pokeon', () => {
     expect(stubWriter.set).toHaveBeenCalledWith(expectedOutput)
   })
 
-  xit('should output a pokemon file', async () => {
+  it('should output a pokemon file', async () => {
     const expectedPokemonOutput = 1
     const dummyReader = new FakeReader(expectedPokemonOutput)
     const dummyTransformer = new FakeTransformer()

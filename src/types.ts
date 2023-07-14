@@ -19,7 +19,7 @@ export interface Reader {
   get(path?: string): Promise<Array<{ name: string }>>
 }
 export interface Writer<D> {
-  set(data: D): Promise<void>
+  set(data: D, path?: string): Promise<void>
 }
 
 export type Pokemon = {
