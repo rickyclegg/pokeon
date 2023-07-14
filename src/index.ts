@@ -4,7 +4,7 @@ import Server from './server'
 import Pokeon from './pokeon/pokeon'
 import config from './config'
 import { promises as fs } from 'fs'
-import YamlTransformer from './pokeon/yaml-transformer'
+import NamesYamlTransformer from './pokeon/names-yaml-transformer'
 import ApiReader from './pokeon/api-reader'
 import { HttpClient } from './types'
 import FileWriter from './pokeon/file-writer'
@@ -21,7 +21,7 @@ const { app } = new Server(
       api: appConfig.POKEMON_API,
       httpClient: fetch as unknown as HttpClient,
     }),
-    transformer: new YamlTransformer(),
+    transformer: new NamesYamlTransformer(),
     writer: new FileWriter({
       fileClient: fs.writeFile,
       filePath: appConfig.NAMES_OUTPUT_FILE_PATH,

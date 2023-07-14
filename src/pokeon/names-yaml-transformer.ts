@@ -1,7 +1,7 @@
 import YAML from 'yaml'
 import { Pokemon, Transformer } from '../types'
 
-class YamlTransformer implements Transformer<Array<Pokemon>, string> {
+class NamesYamlTransformer implements Transformer<Array<Pokemon>, string> {
   public async transform(data: Array<Pokemon>): Promise<string> {
     const names = data.reduce<Array<string>>((arr, item) => {
       return [...arr, item.name]
@@ -11,4 +11,4 @@ class YamlTransformer implements Transformer<Array<Pokemon>, string> {
   }
 }
 
-export default YamlTransformer
+export default NamesYamlTransformer
