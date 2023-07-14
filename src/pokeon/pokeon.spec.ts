@@ -5,6 +5,7 @@ import { Reader, Transformer, Writer } from '../types'
 
 describe('Pokeon', () => {
   it('should output a names file', async () => {
+    const expectedPath = 'pokemon.yml'
     const expectedOutput = 'dummyValue'
     const stubReader = new FakeReader(expectedOutput)
     const dummyTransform = new FakeTransformer()
@@ -18,11 +19,12 @@ describe('Pokeon', () => {
       namesTransformer: dummyTransform,
       pokemonTransformer: dummyTransform,
       writer: stubWriter,
+      namesOutputFilePath: expectedPath,
     })
 
     await pokeon.execute()
 
-    expect(stubWriter.set).toHaveBeenCalledWith(expectedOutput)
+    expect(stubWriter.set).toHaveBeenCalledWith(expectedOutput, expectedPath)
   })
 
   it('should output a pokemon files', async () => {
@@ -42,6 +44,7 @@ describe('Pokeon', () => {
       namesTransformer: dummyTransformer,
       pokemonTransformer: dummyTransformer,
       writer: stubWriter,
+      pokemonOutputFilePath: '/[name].yml',
     })
 
     await pokeon.execute()

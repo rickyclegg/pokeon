@@ -22,12 +22,16 @@ export interface Writer<D> {
   set(data: D, path?: string): Promise<void>
 }
 
-export type Pokemon = {
+export type PokemonName = {
   name: string
 }
 
+export type Pokemon = {
+  id: number
+}
+
 export type PokemonNamesApiRes = {
-  results: Array<Pokemon>
+  results: Array<PokemonName>
 }
 
 export type PokemonItemApiRes = {

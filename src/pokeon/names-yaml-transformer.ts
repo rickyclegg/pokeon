@@ -1,8 +1,8 @@
 import YAML from 'yaml'
-import { Pokemon, Transformer } from '../types'
+import { PokemonName, Transformer } from '../types'
 
-class NamesYamlTransformer implements Transformer<Array<Pokemon>, string> {
-  public async transform(data: Array<Pokemon>): Promise<string> {
+class NamesYamlTransformer implements Transformer<Array<PokemonName>, string> {
+  public async transform(data: Array<PokemonName>): Promise<string> {
     const names = data.reduce<Array<string>>((arr, item) => {
       return [...arr, item.name]
     }, [])

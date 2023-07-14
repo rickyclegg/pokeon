@@ -14,7 +14,7 @@ describe('Acceptance tests', () => {
     expect(data.names[0]).toEqual('bulbasaur')
   })
 
-  xit('should create a bulbasaur.yml when the webhook is called', async () => {
+  it('should create a bulbasaur.yml when the webhook is called', async () => {
     const namesFile = 'pokemon.yml'
     const pokemonFile = 'bulbasaur.yml'
     await triggerWebhook()

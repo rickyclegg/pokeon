@@ -5,3 +5,4 @@ build.log
 pokemon.yml
 .eslintcache
 .DS_Store
+/test-output
