@@ -4,11 +4,12 @@ import YAML from 'yaml'
 
 describe('Acceptance tests', () => {
   it('should create a pokemon.yml when the webhook is called', async () => {
+    const file = 'pokemon.yml'
     await triggerWebhook()
 
-    const data = await readFile()
+    const data = await readFile(file)
 
-    removeFile()
+    removeFile(file)
 
     expect(data.names[0]).toEqual('bulbasaur')
   })
@@ -19,13 +20,13 @@ describe('Acceptance tests', () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function readFile() {
-    const file = readFileSync('pokemon.yml', 'utf-8')
+  async function readFile(path: string) {
+    const file = readFileSync(path, 'utf-8')
 
     return YAML.parse(file)
   }
 
-  async function removeFile() {
-    unlinkSync('pokemon.yml')
+  async function removeFile(path: string) {
+    unlinkSync(path)
   }
 })
