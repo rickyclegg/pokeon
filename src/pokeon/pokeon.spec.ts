@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment  */
+import { when } from 'jest-when'
 import Pokeon from './pokeon'
 import { Reader, Transformer, Writer } from '../types'
 
@@ -23,31 +25,37 @@ describe('Pokeon', () => {
     expect(stubWriter.set).toHaveBeenCalledWith(expectedOutput)
   })
 
-  xit('should output a pokemon file', async () => {
-    const expectedPokemonOutput = 1
-    const dummyReader = new FakeReader(expectedPokemonOutput)
+  it('should output a pokemon file', async () => {
+    const expectedPokemonId = 1
+    const expectedPokemonName = 'pokeyface'
+    const expectedPokemonPath = `/${expectedPokemonName}.yml`
+    const stubReader = new FakeReader(expectedPokemonId)
     const dummyTransformer = new FakeTransformer()
-    const stubPokemonTransformer = new FakeTransformer()
     const stubWriter = new FakeWriter()
 
+    jest.spyOn(stubReader, 'get')
     jest.spyOn(stubWriter, 'set')
 
+    when(stubReader.get).mockResolvedValue({ results: [{ name: expectedPokemonName }] })
+    when(stubReader.get)
+      .calledWith(`/${expectedPokemonName}` as unknown as any)
+      .mockResolvedValue({ id: expectedPokemonId })
+
     const pokeon = new Pokeon({
-      reader: dummyReader,
+      reader: stubReader,
       namesTransformer: dummyTransformer,
-      pokemonTransformer: stubPokemonTransformer,
+      pokemonTransformer: dummyTransformer,
       writer: stubWriter,
     })
 
     await pokeon.execute()
 
-    expect(stubWriter.set).toHaveBeenCalledWith(expectedPokemonOutput)
+    expect(stubWriter.set).toHaveBeenCalledWith({ id: expectedPokemonId }, expectedPokemonPath)
   })
 })
 
 class FakeReader implements Reader {
   private data: any
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
   constructor(data) {
     this.data = data
@@ -58,7 +66,6 @@ class FakeReader implements Reader {
 }
 
 class FakeTransformer implements Transformer<any, any> {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
   async transform(input) {
     return input

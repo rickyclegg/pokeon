@@ -29,3 +29,7 @@ export type Pokemon = {
 export type PokemonNamesApiRes = {
   results: Array<Pokemon>
 }
+
+export type PokemonItemApiRes = {
+  id: number
+}
