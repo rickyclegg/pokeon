@@ -16,7 +16,7 @@ export type HttpClient = (
 export type FileClient = (filePath: string, data: string) => Promise<void>
 
 export interface Reader {
-  get(path?: string): Promise<Array<{ name: string }>>
+  get<T>(path?: string): Promise<T>
 }
 export interface Writer<D> {
   set(data: D, path?: string): Promise<void>
@@ -26,6 +26,6 @@ export type Pokemon = {
   name: string
 }
 
-export type PokemonApiRes = {
+export type PokemonNamesApiRes = {
   results: Array<Pokemon>
 }

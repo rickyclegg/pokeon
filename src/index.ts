@@ -21,7 +21,8 @@ const { app } = new Server(
       baseUrl: appConfig.POKEMON_API,
       httpClient: fetch as unknown as HttpClient,
     }),
-    transformer: new NamesYamlTransformer(),
+    namesTransformer: new NamesYamlTransformer(),
+    pokemonTransformer: new NamesYamlTransformer(),
     writer: new FileWriter({
       fileClient: fs.writeFile,
       basePath: appConfig.NAMES_OUTPUT_FILE_PATH,

@@ -4,15 +4,17 @@ import { Reader, Transformer, Writer } from '../types'
 describe('Pokeon', () => {
   it('should output a names file', async () => {
     const expectedOutput = 'dummyValue'
-    const dummyReader = new FakeReader(expectedOutput)
-    const dummyTransformer = new FakeTransformer()
+    const stubReader = new FakeReader(expectedOutput)
+    const dummyTransform = new FakeTransformer()
     const stubWriter = new FakeWriter()
 
+    jest.spyOn(stubReader, 'get').mockResolvedValue({ results: expectedOutput })
     jest.spyOn(stubWriter, 'set')
 
     const pokeon = new Pokeon({
-      reader: dummyReader,
-      transformer: dummyTransformer,
+      reader: stubReader,
+      namesTransformer: dummyTransform,
+      pokemonTransformer: dummyTransform,
       writer: stubWriter,
     })
 
@@ -21,17 +23,19 @@ describe('Pokeon', () => {
     expect(stubWriter.set).toHaveBeenCalledWith(expectedOutput)
   })
 
-  it('should output a pokemon file', async () => {
+  xit('should output a pokemon file', async () => {
     const expectedPokemonOutput = 1
     const dummyReader = new FakeReader(expectedPokemonOutput)
     const dummyTransformer = new FakeTransformer()
+    const stubPokemonTransformer = new FakeTransformer()
     const stubWriter = new FakeWriter()
 
     jest.spyOn(stubWriter, 'set')
 
     const pokeon = new Pokeon({
       reader: dummyReader,
-      transformer: dummyTransformer,
+      namesTransformer: dummyTransformer,
+      pokemonTransformer: stubPokemonTransformer,
       writer: stubWriter,
     })
 

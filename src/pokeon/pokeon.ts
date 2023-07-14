@@ -1,7 +1,8 @@
-import { Reader, Transformer, Writer } from '../types'
+import { PokemonNamesApiRes, Reader, Transformer, Writer } from '../types'
 
 export type PokeonOptions = {
-  transformer: Transformer<object, string>
+  namesTransformer: Transformer<object, string>
+  pokemonTransformer: Transformer<object, string>
   reader: Reader
   writer: Writer<string>
 }
@@ -12,11 +13,11 @@ class Pokeon {
     this.options = options
   }
   public async execute() {
-    const { transformer, reader, writer } = this.options
+    const { namesTransformer, reader, writer } = this.options
 
-    const data = await reader.get()
+    const data = await reader.get<PokemonNamesApiRes>()
 
-    await writer.set(await transformer.transform(data))
+    await writer.set(await namesTransformer.transform(data.results))
   }
 }
 
