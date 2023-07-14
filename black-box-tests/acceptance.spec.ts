@@ -4,7 +4,7 @@ import YAML from 'yaml'
 
 describe('Acceptance tests', () => {
   it('should create a pokemon.yml when the webhook is called', async () => {
-    const file = 'pokemon.yml'
+    const file = 'test-output/pokemon.yml'
     await triggerWebhook()
 
     const data = await readFile(file)
@@ -15,8 +15,8 @@ describe('Acceptance tests', () => {
   })
 
   it('should create a bulbasaur.yml when the webhook is called', async () => {
-    const namesFile = 'pokemon.yml'
-    const pokemonFile = 'bulbasaur.yml'
+    const namesFile = 'test-output/pokemon.yml'
+    const pokemonFile = 'test-output/bulbasaur.yml'
     await triggerWebhook()
 
     const data = await readFile(pokemonFile)
